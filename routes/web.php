@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 Route::get('/', function () {
@@ -20,4 +21,7 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('painel/plans', 'PlanController');
+
+//Route::resource('painel/plans', 'Painel\PlanController');
+
+Route::get('painel/plans', [App\Http\Controllers\Painel\PlanController::class, 'index'])->name('plans.index');
