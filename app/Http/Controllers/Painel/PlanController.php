@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Painel;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+    private $repository;
+
+    public function __construct(Plan $plan)
+    {
+
+        $this->repository = $plan;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,11 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view('painel.pages.plans.index');
+        $plans = $this->repository->latest()->paginate();
+
+        return view('painel.pages.plans.index', [
+            'plans' => $plans,
+        ]);
     }
 
     /**
@@ -24,7 +37,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('painel.pages.plans.create');
     }
 
     /**
@@ -35,7 +48,12 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $colluns = $request->all();
+        $colluns['url'] = Str::kebab($request->name);
+
+        $this->repository->create($colluns);
+
+        return redirect()->route('plans.index');
     }
 
     /**
@@ -44,9 +62,17 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($url)
     {
-        //
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        return view('painel.pages.plans.show', [
+            'plan' => $plan
+        ]);
     }
 
     /**
@@ -67,9 +93,8 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $url)
     {
-        //
     }
 
     /**
@@ -78,8 +103,33 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($url)
     {
-        //
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan) {
+            echo 'oi';
+        }
+
+        $plan->delete();
+
+        return redirect()->route('plans.index');
+    }
+
+    public function search(Request $request)
+    {
+
+        if (!$request->filter) {
+            return redirect()->route('plans.index');
+        }
+
+        $filters = $request->except('token');
+
+        $plans = $this->repository->search($request->filter);
+
+        return view('painel.pages.plans.index', [
+            'plans' => $plans,
+            'filters' => $filters
+        ]);
     }
 }
