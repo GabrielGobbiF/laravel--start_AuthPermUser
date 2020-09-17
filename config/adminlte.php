@@ -235,6 +235,7 @@ return [
             'text'       => 'Planos',
             'icon_color' => 'cyan',
             'url'        => 'painel/plans',
+            'icon' => 'fas fa-list-alt'
         ],
     ],
 
