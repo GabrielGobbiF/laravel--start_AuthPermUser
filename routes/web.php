@@ -33,7 +33,7 @@ Route::prefix('painel/plans')->group(function () {
     Route::get('/create', [App\Http\Controllers\Painel\PlanController::class, 'create'])->name('plans.create');
     Route::post('/create', [App\Http\Controllers\Painel\PlanController::class, 'store'])->name('plans.store');
     Route::get('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'show'])->name('plans.show');
-    Route::post('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'update'])->name('plans.update');
+    Route::put('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'update'])->name('plans.update');
 });
 
 Route::get('/painel', [App\Http\Controllers\Painel\PlanController::class, 'index'])->name('plans.index');

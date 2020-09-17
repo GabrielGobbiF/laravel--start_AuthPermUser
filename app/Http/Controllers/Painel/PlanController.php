@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Painel;
 
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -47,12 +47,9 @@ class PlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdatePlan $request)
     {
-        $colluns = $request->all();
-        $colluns['url'] = Str::kebab($request->name);
-
-        $this->repository->create($colluns);
+        $this->repository->create($request->all());
 
         return redirect()->route('plans.index');
     }
@@ -68,7 +65,7 @@ class PlanController extends Controller
         $plan = $this->repository->where('url', $url)->first();
 
         if (!$plan) {
-            return redirect()->back();
+            return redirect()->route('plans.index');
         }
 
         return view('painel.pages.plans.show', [
@@ -93,14 +90,14 @@ class PlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $url)
+    public function update(StoreUpdatePlan $request, $url)
     {
         $colluns = $request->all();
 
         $plan = $this->repository->where('url', $url)->first();
 
         if (!$plan) {
-            return redirect()->back();
+            return redirect()->route('plans.index');
         }
 
         $plan->update($colluns);
