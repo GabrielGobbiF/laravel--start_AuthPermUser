@@ -8,7 +8,7 @@
             <form role="form" id="form" action="{{ route('plans.update', $plan->url) }}" method="POST">
                 @csrf
                 @method('PUT')
-                @include('painel.pages.plans._partials.form_plans')
+                @include('painel.pages.plans._partials.form_details')
             </form>
         </div>
     </div>
