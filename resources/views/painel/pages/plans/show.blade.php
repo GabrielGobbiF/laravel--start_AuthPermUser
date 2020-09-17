@@ -11,6 +11,7 @@
         <form role="form" id="form" novalidate="novalidate" action="{{ route('plans.update', $plan->url) }}" method="POST">
             <div class="card-body">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="input--name">Nome</label>
                 <input type="text" name="name" class="form-control" id="input--name" required  value="{{$plan->name}}">

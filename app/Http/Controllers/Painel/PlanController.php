@@ -49,10 +49,10 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        $colluns = $request->all();
-        $colluns['url'] = Str::kebab($request->name);
+        $columns = $request->all();
+        $columns['url'] = Str::kebab($request->name);
 
-        $this->repository->create($colluns);
+        $this->repository->create($columns);
 
         return redirect()->route('plans.index');
     }
@@ -95,7 +95,7 @@ class PlanController extends Controller
      */
     public function update(Request $request, $url)
     {
-        $colluns = $request->all();
+        $columns = $request->all();
 
         $plan = $this->repository->where('url', $url)->first();
 
@@ -103,7 +103,7 @@ class PlanController extends Controller
             return redirect()->back();
         }
 
-        $plan->update($colluns);
+        $plan->update($columns);
 
         return view('painel.pages.plans.show', [
             'plan' => $plan
