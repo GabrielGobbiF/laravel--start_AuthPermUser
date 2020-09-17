@@ -14,7 +14,8 @@
             <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
                 @csrf
                 <div class="form-group">
-                    <input type="text" class="text" name="filter" class="form-control" value="{{$filters['filter'] ?? ''}}">
+                    <input type="text" class="text" name="filter" class="form-control"
+                        value="{{ $filters['filter'] ?? '' }}">
                 </div>
                 <button type="submit" class="btn btn-dark">pesquisar</button>
             </form>
@@ -38,6 +39,9 @@
                                         class="fa fa-edit"></i></a>
                                 <a href="{{ route('plans.destroy', $plan->url) }}" class="btn btn-danger "><i
                                         class="fa fa-trash"></i></a>
+                                <a href="{{ route('plans.details.index', $plan->url) }}" class="btn btn-primary">
+                                    <i class="fa fa-list"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
