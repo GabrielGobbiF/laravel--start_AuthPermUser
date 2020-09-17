@@ -27,6 +27,9 @@
                                 <a href="{{ route('plans.destroy', $plan->url) }}" class="btn btn-danger">
                                     <i class="fa fa-trash"></i> Excluir
                                 </a>
+                                <a href="{{ route('plans.details.index', $plan->url) }}" class="btn btn-primary">
+                                    <i class="fa fa-trash"></i> Detalhes
+                                </a>
                             </td>
                         </tr>
                     @endforeach
