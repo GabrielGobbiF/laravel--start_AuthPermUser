@@ -35,3 +35,9 @@ Route::prefix('painel/plans')->group(function () {
     Route::get('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'show'])->name('plans.show');
     Route::post('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'update'])->name('plans.update');
 });
+
+Route::get('/painel', [App\Http\Controllers\Painel\PlanController::class, 'index'])->name('plans.index');
+
+Route::fallback(function(){
+    return view('errors/404');
+});

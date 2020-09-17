@@ -13,6 +13,7 @@ class PlanController extends Controller
 
     public function __construct(Plan $plan)
     {
+        $this->middleware('auth');
 
         $this->repository = $plan;
     }
@@ -83,7 +84,6 @@ class PlanController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -95,6 +95,19 @@ class PlanController extends Controller
      */
     public function update(Request $request, $url)
     {
+        $colluns = $request->all();
+
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        $plan->update($colluns);
+
+        return view('painel.pages.plans.show', [
+            'plan' => $plan
+        ]);
     }
 
     /**
