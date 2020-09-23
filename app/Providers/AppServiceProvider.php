@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Modules\Painel\Plans\Models\Plan;
-use App\Modules\Painel\Plans\Observers\PlanObserver;
+use App\Models\Plan;
+use App\Observers\PlanObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Modules\Painel\Profiles\Controllers;
+namespace App\Http\Controllers\Painel\ACL;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Painel\Profiles\Requests\StoreUpdateProfile;
-use App\Modules\Painel\Profiles\Models\Profile;
+use App\Http\Requests\StoreUpdatePermission;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class PermissionController extends Controller
 {
     protected $repository;
 
-    public function __construct(Profile $profile)
+    public function __construct(Permission $permission)
     {
         $this->middleware('auth');
 
-        $this->repository = $profile;
+        $this->repository = $permission;
     }
     /**
      * Display a listing of the resource.
@@ -24,9 +24,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = $this->repository->paginate();
+        $permissions = $this->repository->paginate();
 
-        return view('painel.pages.profiles.index', compact('profiles'));
+        return view('painel.pages.permissions.index', compact('permissions'));
     }
 
     /**
@@ -36,21 +36,21 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('painel.pages.profiles.create');
+        return view('painel.pages.permissions.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \StoreUpdateProfile  $request
+     * @param  \StoreUpdatePermission  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateProfile $request)
+    public function store(StoreUpdatePermission $request)
     {
         $this->repository->create($request->all());
 
         return redirect()
-            ->route('profiles.index')
+            ->route('permissions.index')
             ->with('message', 'Criado com sucesso');
     }
 
@@ -62,42 +62,42 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $profile = $this->repository->where('id', $id)->first();
+        $permission = $this->repository->where('id', $id)->first();
 
-        if (!$profile) {
+        if (!$permission) {
             return redirect()
-                ->route('profiles.index')
+                ->route('permissions.index')
                 ->with('message', 'Registro não encontrado!');
         }
 
-        return view('painel.pages.profiles.show', [
-            'profile' => $profile
+        return view('painel.pages.permissions.show', [
+            'permission' => $permission
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \StoreUpdateProfile  $request
+     * @param  \StoreUpdatePermission  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateProfile $request, $id)
+    public function update(StoreUpdatePermission $request, $id)
     {
         $columns = $request->all();
 
-        $profile = $this->repository->where('id', $id)->first();
+        $permission = $this->repository->where('id', $id)->first();
 
-        if (!$profile) {
+        if (!$permission) {
             return redirect()
-                ->route('profiles.index')
+                ->route('permissions.index')
                 ->with('message', 'Registro não encontrado!');
         }
 
-        $profile->update($columns);
+        $permission->update($columns);
 
-        return view('painel.pages.profiles.show', [
-            'profile' => $profile
+        return view('painel.pages.permissions.show', [
+            'permission' => $permission
         ]);
     }
 
@@ -109,20 +109,20 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $profile = $this->repository
+        $permission = $this->repository
             ->where('id', $id)
             ->first();
 
-        if (!$profile) {
+        if (!$permission) {
             return redirect()
-                ->route('profiles.index')
+                ->route('permissions.index')
                 ->with('message', 'Registro não encontrado!');
         }
 
-        $profile->delete();
+        $permission->delete();
 
         return redirect()
-            ->route('profiles.index')
+            ->route('permissions.index')
             ->with('message', 'Deletado com sucesso!');
     }
 }

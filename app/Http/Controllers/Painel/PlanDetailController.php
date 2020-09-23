@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Painel\Plans\Controllers;
+namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Painel\Plans\Models\Plan;
-use App\Modules\Painel\Plans\Models\PlanDetail;
-use App\Modules\Painel\Plans\Requests\StoreUpdatePlanDetail;
+use App\Models\Plan;
+use App\Models\PlanDetail;
+use App\Http\Requests\StoreUpdatePlanDetail;
 use Illuminate\Http\Request;
 
 class PlanDetailController extends Controller

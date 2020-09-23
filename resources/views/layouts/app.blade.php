@@ -39,7 +39,7 @@
                     @auth
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('plans.index') }}">Plans</a>
+                                <a class="nav-link" href="{{ route('plans.index') }}">Planos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profiles.index') }}">Perfis</a>
