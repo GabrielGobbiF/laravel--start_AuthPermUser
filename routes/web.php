@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Painel\Profiles\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::prefix('painel')->namespace('Painel')->group(function () {
+Route::prefix('painel')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /*
     |--------------------------------------------------------------------------
@@ -44,14 +43,20 @@ Route::prefix('painel')->namespace('Painel')->group(function () {
         Route::get('/{id}', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'show'])->name('plans.show');
         Route::put('/{id}', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'update'])->name('plans.update');
     });
-
     /*
     |--------------------------------------------------------------------------
     | Profiles (Perfis)
     |--------------------------------------------------------------------------
     */
-    //Route::resource('profiles', 'TodoController');
+    Route::resource('profiles', ProfileController::class)->except([
+        'destroy'
+    ]);
+    Route::get('profiles/delete/{id}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
 });
+
+
+
+
 
 Route::fallback(function () {
     return view('errors/404');

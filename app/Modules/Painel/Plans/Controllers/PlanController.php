@@ -65,22 +65,14 @@ class PlanController extends Controller
         $plan = $this->repository->where('url', $url)->first();
 
         if (!$plan) {
-            return redirect()->route('plans.index');
+            return redirect()
+                ->route('plans.index')
+                ->with('message', 'Registro não encontrado!');
         }
 
         return view('painel.pages.plans.show', [
             'plan' => $plan
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
     }
 
     /**
@@ -92,15 +84,17 @@ class PlanController extends Controller
      */
     public function update(StoreUpdatePlan $request, $url)
     {
-        $colluns = $request->all();
+        $columns = $request->all();
 
         $plan = $this->repository->where('url', $url)->first();
 
         if (!$plan) {
-            return redirect()->route('plans.index');
+            return redirect()
+                ->route('plans.index')
+                ->with('message', 'Registro não encontrado!');
         }
 
-        $plan->update($colluns);
+        $plan->update($columns);
 
         return view('painel.pages.plans.show', [
             'plan' => $plan
@@ -121,13 +115,15 @@ class PlanController extends Controller
             ->first();
 
         if (!$plan) {
-            return redirect()->route('plans.index');
+            return redirect()
+                ->route('plans.index')
+                ->with('message', 'Registro não encontrado!');
         }
 
         if ($plan->details->count() > 0) {
             return redirect()
-                            ->back()
-                            ->with('error', 'Existem detalhes vinculados a esse plano');
+                ->back()
+                ->with('error', 'Existem detalhes vinculados a esse plano');
         }
 
         $plan->delete();

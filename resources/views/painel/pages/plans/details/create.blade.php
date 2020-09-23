@@ -8,7 +8,6 @@
 
         <div class="card">
             <form role="form" id="form" novalidate="novalidate" action="{{ route('plans.details.store', $plan->url) }}" method="POST">
-                @csrf
                 @include('painel.pages.plans._partials.form_details')
             </form>
         </div>

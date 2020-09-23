@@ -36,16 +36,16 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('plans.index') }}">Plans</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profiles.index') }}">Perfis</a>
-                        </li>
-                    </ul>
-
+                    @auth
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('plans.index') }}">Plans</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('profiles.index') }}">Perfis</a>
+                            </li>
+                        </ul>
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -68,7 +68,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -78,36 +78,36 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @if ($errors->any())
-                <x-alert>
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}<br>
-                    @endforeach
-                </x-alert>
-            @endif
-
-            @if (session('message'))
-                <x-alert>
-                    {{ session('message') }}<br>
-                </x-alert>
-            @endif
-
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    <div style="border: 1px solid #ccc; padding:20px" class="">
-                        {{ session('error') }}<br>
+                        </ul>
                     </div>
                 </div>
-            @endif
-            @yield('content')
-        </main>
-    </div>
-</body>
+            </nav>
 
-</html>
+            <main class="py-4">
+                @if ($errors->any())
+                    <x-alert>
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}<br>
+                        @endforeach
+                    </x-alert>
+                @endif
+
+                @if (session('message'))
+                    <x-alert>
+                        {{ session('message') }}<br>
+                    </x-alert>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        <div style="border: 1px solid #ccc; padding:20px" class="">
+                            {{ session('error') }}<br>
+                        </div>
+                    </div>
+                @endif
+                @yield('content')
+            </main>
+        </div>
+    </body>
+
+    </html>
