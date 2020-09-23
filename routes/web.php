@@ -52,6 +52,16 @@ Route::prefix('painel')->group(function () {
         'destroy'
     ]);
     Route::get('profiles/delete/{id}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Permissons (Permissões)
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('permissions', App\Modules\Painel\Permissions\Controllers\PermissionController::class)->except([
+        'destroy'
+    ]);
+    Route::get('permissions/delete/{id}', [App\Modules\Painel\Permissions\Controllers\PermissionController::class, 'destroy'])->name('permissions.destroy');
 });
 
 

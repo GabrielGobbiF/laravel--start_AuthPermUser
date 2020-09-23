@@ -44,6 +44,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profiles.index') }}">Perfis</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('permissions.index') }}">Permissões</a>
+                            </li>
                         </ul>
                     @endif
                     <!-- Right Side Of Navbar -->
