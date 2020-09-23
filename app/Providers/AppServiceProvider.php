@@ -2,15 +2,15 @@
 
 namespace App\Providers;
 
-use App\Models\Plan;
-use App\Observers\PlanObserver;
+use App\Modules\Painel\Plans\Models\Plan;
+use App\Modules\Painel\Plans\Observers\PlanObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register any application services.s
      *
      * @return void
      */

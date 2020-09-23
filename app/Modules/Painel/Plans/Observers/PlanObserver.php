@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Observers;
+namespace App\Modules\Painel\Plans\Observers;
 
-use App\Models\Plan;
+use App\Modules\Painel\Plans\Models\Plan;
 use Illuminate\Support\Str;
 
 class PlanObserver
@@ -10,7 +10,7 @@ class PlanObserver
     /**
      * Handle the plan "creating" event.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Modules\Painel\Plans\Models\Plan  $plan
      * @return void
      */
     public function creating(Plan $plan)
@@ -21,7 +21,7 @@ class PlanObserver
     /**
      * Handle the plan "updating" event.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Modules\Painel\Plans\Models\Plan  $plan
      * @return void
      */
     public function updating(Plan $plan)
@@ -32,7 +32,7 @@ class PlanObserver
     /**
      * Handle the plan "deleted" event.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Modules\Painel\Plans\Models\Plan  $plan
      * @return void
      */
     public function deleted(Plan $plan)
@@ -43,7 +43,7 @@ class PlanObserver
     /**
      * Handle the plan "restored" event.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Modules\Painel\Plans\Models\Plan  $plan
      * @return void
      */
     public function restored(Plan $plan)
@@ -54,7 +54,7 @@ class PlanObserver
     /**
      * Handle the plan "force deleted" event.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Modules\Painel\Plans\Models\Plan  $plan
      * @return void
      */
     public function forceDeleted(Plan $plan)

@@ -18,9 +18,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('painel')->namespace('Painel')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
     /*
     |--------------------------------------------------------------------------
     | Plans (Planos)
@@ -32,19 +29,19 @@ Route::prefix('painel')->namespace('Painel')->group(function () {
         | Details (Detalhe do Plano)
         |--------------------------------------------------------------------------
         */
-        Route::get('/{url}/details', [App\Http\Controllers\Painel\PlanDetailController::class, 'index'])->name('plans.details.index');
-        Route::get('/{url}/details/create', [App\Http\Controllers\Painel\PlanDetailController::class, 'create'])->name('plans.details.create');
-        Route::post('/{url}/details/create', [App\Http\Controllers\Painel\PlanDetailController::class, 'store'])->name('plans.details.store');
-        Route::get('/{url}/details/{id}', [App\Http\Controllers\Painel\PlanDetailController::class, 'show'])->name('plans.details.show');
-        Route::put('/{url}/details/{id}', [App\Http\Controllers\Painel\PlanDetailController::class, 'update'])->name('plans.details.update');
+        Route::get('/{url}/details', [App\Modules\Painel\Plans\Controllers\PlanDetailController::class, 'index'])->name('plans.details.index');
+        Route::get('/{url}/details/create', [App\Modules\Painel\Plans\Controllers\PlanDetailController::class, 'create'])->name('plans.details.create');
+        Route::post('/{url}/details/create', [App\Modules\Painel\Plans\Controllers\PlanDetailController::class, 'store'])->name('plans.details.store');
+        Route::get('/{url}/details/{id}', [App\Modules\Painel\Plans\Controllers\PlanDetailController::class, 'show'])->name('plans.details.show');
+        Route::put('/{url}/details/{id}', [App\Modules\Painel\Plans\Controllers\PlanDetailController::class, 'update'])->name('plans.details.update');
 
-        Route::any('/search', [App\Http\Controllers\Painel\PlanController::class, 'search'])->name('plans.search');
-        Route::get('/delete/{id}', [App\Http\Controllers\Painel\PlanController::class, 'destroy'])->name('plans.destroy');
-        Route::get('/', [App\Http\Controllers\Painel\PlanController::class, 'index'])->name('plans.index');
-        Route::get('/create', [App\Http\Controllers\Painel\PlanController::class, 'create'])->name('plans.create');
-        Route::post('/create', [App\Http\Controllers\Painel\PlanController::class, 'store'])->name('plans.store');
-        Route::get('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'show'])->name('plans.show');
-        Route::put('/{id}', [App\Http\Controllers\Painel\PlanController::class, 'update'])->name('plans.update');
+        Route::any('/search', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'search'])->name('plans.search');
+        Route::get('/delete/{id}', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'destroy'])->name('plans.destroy');
+        Route::get('/', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'index'])->name('plans.index');
+        Route::get('/create', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'create'])->name('plans.create');
+        Route::post('/create', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'store'])->name('plans.store');
+        Route::get('/{id}', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'show'])->name('plans.show');
+        Route::put('/{id}', [App\Modules\Painel\Plans\Controllers\PlanController::class, 'update'])->name('plans.update');
     });
 });
 

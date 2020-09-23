@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Painel;
+namespace App\Modules\Painel\Plans\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Plan;
-use App\Models\PlanDetail;
+use App\Modules\Painel\Plans\Models\Plan;
+use App\Modules\Painel\Plans\Models\PlanDetail;
 use Illuminate\Http\Request;
 
 class PlanDetailController extends Controller
