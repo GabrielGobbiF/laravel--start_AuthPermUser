@@ -12,7 +12,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Preco</th>
-                        <th>Ação</th>
+                        <th class="text-center">Ação</th>
                     </tr>
                 </thead>
                 <tbody>

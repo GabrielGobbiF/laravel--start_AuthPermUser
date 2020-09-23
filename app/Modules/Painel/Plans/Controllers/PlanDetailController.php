@@ -5,6 +5,7 @@ namespace App\Modules\Painel\Plans\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\Painel\Plans\Models\Plan;
 use App\Modules\Painel\Plans\Models\PlanDetail;
+use App\Modules\Painel\Plans\Requests\StoreUpdatePlanDetail;
 use Illuminate\Http\Request;
 
 class PlanDetailController extends Controller
@@ -42,7 +43,7 @@ class PlanDetailController extends Controller
         ]);
     }
 
-    public function store(Request $request, $urlPlan)
+    public function store(StoreUpdatePlanDetail $request, $urlPlan)
     {
         if (!$plan = $this->plan->where('url', $urlPlan)->first()) {
             return redirect()->route('plans.index');
@@ -59,12 +60,12 @@ class PlanDetailController extends Controller
         $detail = $this->repository->find($idDetail);
 
         if (!$plan || !$detail) {
-            return redirect()->route('plans.index');
+            return redirect()->back();
         }
 
         return view('painel.pages.plans.details.show', [
-            'detail' => $detail,
-            'plan' => $plan
+            'plan' => $plan,
+            'detail' => $detail
         ]);
     }
 
@@ -75,20 +76,39 @@ class PlanDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdatePlan $request, $url)
+    public function update(StoreUpdatePlanDetail $request, $urlPlan, $idDetail)
     {
-        $colluns = $request->all();
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
 
-        $plan = $this->repository->where('url', $url)->first();
-
-        if (!$plan) {
-            return redirect()->route('plans.index');
+        if (!$plan || !$detail) {
+            return redirect()->back();
         }
 
-        $plan->update($colluns);
+        $detail->update($request->all());
 
-        return view('painel.pages.plans.show', [
-            'plan' => $plan
-        ]);
+        return redirect()->route('plans.details.index', $plan->url);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($url, $idDetail)
+    {
+        $detail = $this->repository->where('id', $idDetail)->first();
+
+        if (!$detail) {
+            redirect()->route('plans.details.index', $url);
+        }
+
+        $detail->delete();
+
+        return redirect()
+                        ->route('plans.details.index', $url)
+                        ->with('message', 'Deletado com sucesso!');
+
     }
 }

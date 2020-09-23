@@ -21,7 +21,12 @@
                             <td>
                                 <a href="{{ route('plans.details.show', [$plan->url, $detail->id]) }}"
                                     class="btn btn-primary">
-                                    <i class="fa fa-trash"></i> Editar
+                                    <i class="fa fa-list"></i> Editar
+                                </a>
+
+                                <a href="{{ route('plans.details.destroy', [$plan->url, $detail->id]) }}"
+                                    class="btn btn-danger">
+                                    <i class="fa fa-trash"></i> Excluir
                                 </a>
                             </td>
                         </tr>

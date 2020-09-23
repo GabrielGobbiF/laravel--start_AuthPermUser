@@ -28,6 +28,7 @@
                 <a class="navbar-brand" href="{{ url('/painel') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -37,7 +38,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('plans.index') }}">Plans</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profiles.index') }}">Perfis</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,8 +66,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -83,6 +90,20 @@
                         {{ $error }}<br>
                     @endforeach
                 </x-alert>
+            @endif
+
+            @if (session('message'))
+                <x-alert>
+                    {{ session('message') }}<br>
+                </x-alert>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <div style="border: 1px solid #ccc; padding:20px" class="">
+                        {{ session('error') }}<br>
+                    </div>
+                </div>
             @endif
             @yield('content')
         </main>
