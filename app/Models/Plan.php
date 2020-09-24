@@ -19,9 +19,14 @@ class Plan extends Model
     public function search($filter = null)
     {
         $results = $this->where('name', 'LIKE', "%{$filter}%")
-                        ->orWhere('description', 'LIKE', "%{$filter}%")
-                        ->paginate();
+            ->orWhere('description', 'LIKE', "%{$filter}%")
+            ->paginate();
 
         return $results;
+    }
+
+    public function profiles()
+    {
+        $this->belongsToMany(Profile::class);
     }
 }

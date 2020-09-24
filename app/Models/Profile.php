@@ -36,4 +36,14 @@ class Profile extends Model
 
         return $permissions;
     }
+
+    /**
+     * Get Plans
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function plans()
+    {
+        $this->belongsToMany(Plan::class);
+    }
 }

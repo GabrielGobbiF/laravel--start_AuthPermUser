@@ -11,22 +11,22 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Ação</th>
+                        <th class="text-center">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($details as $detail)
                         <tr>
                             <td>{{ $detail->name }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{ route('plans.details.show', [$plan->url, $detail->id]) }}"
                                     class="btn btn-primary">
-                                    <i class="fa fa-list"></i> Editar
+                                    <i class="fa fa-edit"></i>
                                 </a>
 
                                 <a href="{{ route('plans.details.destroy', [$plan->url, $detail->id]) }}"
                                     class="btn btn-danger">
-                                    <i class="fa fa-trash"></i> Excluir
+                                    <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

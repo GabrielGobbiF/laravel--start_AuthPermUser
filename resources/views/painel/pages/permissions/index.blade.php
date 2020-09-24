@@ -22,13 +22,13 @@
                             <td>{{ $permission->description }}</td>
                             <td class="text-center">
                                 <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-primary">
-                                    <i class="fa fa-edit"></i> Editar
+                                    <i class="fa fa-edit"></i>
                                 </a>
                                 <a href="{{ route('permissions.destroy', $permission->id) }}" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i> Excluir
+                                    <i class="fa fa-trash"></i>
                                 </a>
-                                <a href="{{ route('permissions.profiles', $permission->id) }}" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i> Perfis
+                                <a href="{{ route('permissions.profiles', $permission->id) }}" class="btn btn-warning">
+                                    <i class="fas fa-users"></i>
                                 </a>
                             </td>
                         </tr>

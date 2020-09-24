@@ -22,13 +22,13 @@
                             <td>{{ $profile->description }}</td>
                             <td class="text-center">
                                 <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-primary">
-                                    <i class="fa fa-edit"></i> Editar
+                                    <i class="fa fa-edit"></i>
                                 </a>
                                 <a href="{{ route('profiles.destroy', $profile->id) }}" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i> Excluir
+                                    <i class="fa fa-trash"></i>
                                 </a>
-                                <a href="{{ route('profile.permissions', $profile->id) }}" class="btn btn-danger">
-                                    <i class="fa fa-lock"></i> Permissões
+                                <a href="{{ route('profile.permissions', $profile->id) }}" class="btn btn-warning">
+                                    <i class="fa fa-lock"></i>
                                 </a>
                             </td>
                         </tr>
@@ -38,3 +38,4 @@
         </div>
     </div>
 @endsection
+
