@@ -27,6 +27,9 @@
                                 <a href="{{ route('permissions.destroy', $permission->id) }}" class="btn btn-danger">
                                     <i class="fa fa-trash"></i> Excluir
                                 </a>
+                                <a href="{{ route('permissions.profiles', $permission->id) }}" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i> Perfis
+                                </a>
                             </td>
                         </tr>
                     @endforeach

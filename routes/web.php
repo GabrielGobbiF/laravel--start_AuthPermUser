@@ -62,6 +62,18 @@ Route::prefix('painel')->group(function () {
         'destroy'
     ]);
     Route::get('permissions/delete/{id}', [App\Http\Controllers\Painel\ACL\PermissionController::class, 'destroy'])->name('permissions.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Permissons x Profiles (Permissões do Perfil)
+    |--------------------------------------------------------------------------
+    */
+    Route::get('profiles/{id}/permissions', [App\Http\Controllers\Painel\ACL\PermissionProfileController::class, 'permissions'])->name('profile.permissions');
+    Route::get('profiles/{id}/permissions/create', [App\Http\Controllers\Painel\ACL\PermissionProfileController::class, 'availablePermissionProfile'])->name('profile.permissions.available');
+    Route::post('profiles/{id}/permissions/store', [App\Http\Controllers\Painel\ACL\PermissionProfileController::class, 'attachPermissionsProfile'])->name('profile.permissions.attach');
+    Route::get('profiles/{id}/permissions/{permission_id}/detach', [App\Http\Controllers\Painel\ACL\PermissionProfileController::class, 'detachPermissionsProfile'])->name('profile.permissions.detach');
+    Route::get('permissions/{id}/profile', [App\Http\Controllers\Painel\ACL\PermissionProfileController::class, 'profiles'])->name('permissions.profiles');
+
 });
 
 
